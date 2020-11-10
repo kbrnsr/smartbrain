@@ -1,12 +1,54 @@
 .form {
   width: "400px";
-  background-color:#556;
-  background-image: linear-gradient(30deg, #55020040 12%, transparent 12.5%, transparent 87%, #55020040 87.5%, #55020040),
-  linear-gradient(150deg, #55020040 12%, transparent 12.5%, transparent 87%, #55020040 87.5%, #55020040),
-  linear-gradient(30deg, #55020040 12%, transparent 12.5%, transparent 87%, #55020040 87.5%, #55020040),
-  linear-gradient(150deg, #55020040 12%, transparent 12.5%, transparent 87%, #55020040 87.5%, #55020040),
-  linear-gradient(60deg, #45002680 25%, transparent 25.5%, transparent 75%, #45002680 75%, #45002680),
-  linear-gradient(60deg, #45002680 25%, transparent 25.5%, transparent 75%, #45002680 75%, #45002680);
-  background-size:80px 140px;
+  background-color: #556;
+  background-image: linear-gradient(
+      30deg,
+      #55020040 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #55020040 87.5%,
+      #55020040
+    ),
+    linear-gradient(
+      150deg,
+      #55020040 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #55020040 87.5%,
+      #55020040
+    ),
+    linear-gradient(
+      30deg,
+      #55020040 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #55020040 87.5%,
+      #55020040
+    ),
+    linear-gradient(
+      150deg,
+      #55020040 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #55020040 87.5%,
+      #55020040
+    ),
+    linear-gradient(
+      60deg,
+      #45002680 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #45002680 75%,
+      #45002680
+    ),
+    linear-gradient(
+      60deg,
+      #45002680 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #45002680 75%,
+      #45002680
+    );
+  background-size: 80px 140px;
   background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
 }
