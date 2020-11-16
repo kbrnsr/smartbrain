@@ -75,13 +75,27 @@ class App extends Component {
   };
 
   onButtonSubmit = () => {
-    const { input } = this.state;
+    const { input, user } = this.state;
+    const { id } = user;
     this.setState({ imageUrl: input });
     app.models
       .predict('d02b4508df58432fbb84e800597b8959', input)
-      .then((response) =>
-        this.displayFaceBox(this.calculateFaceLocation(response))
-      )
+      .then((response) => {
+        if (response) {
+          fetch('http://localhost:2999/image', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id,
+            }),
+          })
+            .then((resp) => resp.json())
+            .then((count) => {
+              this.setState(Object.assign(user, { entries: count }));
+            });
+        }
+        this.displayFaceBox(this.calculateFaceLocation(response));
+      })
       .catch((err) => console.log(err));
   };
 
