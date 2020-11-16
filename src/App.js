@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
@@ -35,8 +36,22 @@ class App extends Component {
       box: {},
       route: 'signin',
       isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: '',
+      },
     };
   }
+
+  loadUser = (data) => {
+    const { id, name, email, entries, joined } = data;
+    this.setState({
+      user: { id, name, email, entries, joined },
+    });
+  };
 
   calculateFaceLocation = (data) => {
     const clarifaiFace =
@@ -103,7 +118,10 @@ class App extends Component {
         ) : route === 'signin' ? (
           <Signin onRouteChange={this.onRouteChange} />
         ) : (
-          <Register onRouteChange={this.onRouteChange} />
+          <Register
+            onRouteChange={this.onRouteChange}
+            loadUser={this.loadUser}
+          />
         )}
         {/* eslint-enable no-nested-ternary */}
       </div>
