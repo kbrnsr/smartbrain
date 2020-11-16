@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
@@ -96,7 +95,8 @@ class App extends Component {
   };
 
   render() {
-    const { imageUrl, box, route, isSignedIn } = this.state;
+    const { imageUrl, box, route, isSignedIn, user } = this.state;
+    const { name, entries } = user;
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
@@ -108,7 +108,7 @@ class App extends Component {
         {route === 'home' ? (
           <div>
             <Logo />
-            <Rank />
+            <Rank name={name} entries={entries} />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
@@ -116,7 +116,7 @@ class App extends Component {
             <FaceRecognition box={box} imageUrl={imageUrl} />
           </div>
         ) : route === 'signin' ? (
-          <Signin onRouteChange={this.onRouteChange} />
+          <Signin onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
         ) : (
           <Register
             onRouteChange={this.onRouteChange}

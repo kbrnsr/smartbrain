@@ -20,7 +20,7 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    const { onRouteChange } = this.props;
+    const { onRouteChange, loadUser } = this.props;
     const { signInEmail, signInPassword } = this.state;
     fetch('http://localhost:2999/signin', {
       method: 'post',
@@ -28,8 +28,9 @@ class Signin extends React.Component {
       body: JSON.stringify({ email: signInEmail, password: signInPassword }),
     })
       .then((resp) => resp.json())
-      .then((data) => {
-        if (data === 'Success') {
+      .then((user) => {
+        if (user.id) {
+          loadUser(user);
           onRouteChange('home');
         }
       });
@@ -95,6 +96,9 @@ class Signin extends React.Component {
   }
 }
 
-Signin.propTypes = { onRouteChange: PropTypes.func.isRequired };
+Signin.propTypes = {
+  onRouteChange: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+};
 
 export default Signin;
