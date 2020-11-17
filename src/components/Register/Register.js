@@ -21,7 +21,7 @@ class Register extends React.Component {
     })
       .then((resp) => resp.json())
       .then((user) => {
-        if (user) {
+        if (user.id) {
           loadUser(user);
           onRouteChange('home');
         }

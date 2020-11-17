@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
@@ -9,10 +8,6 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import './App.css';
-
-const app = new Clarifai.App({
-  apiKey: 'REPLACETHISTEXTWITHAPIKEY',
-});
 
 const particlesOptions = {
   particles: {
@@ -80,8 +75,14 @@ class App extends Component {
     const { input, user } = this.state;
     const { id } = user;
     this.setState({ imageUrl: input });
-    app.models
-      .predict('d02b4508df58432fbb84e800597b8959', input)
+    fetch('http://localhost:2999/imageurl', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input,
+      }),
+    })
+      .then((response) => response.json())
       .then((response) => {
         if (response) {
           fetch('http://localhost:2999/image', {
